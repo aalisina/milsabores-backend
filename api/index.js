@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models');
+const { User } = require('../models');
 
 const api = express();
 const PORT = process.env.PORT || 3000;
