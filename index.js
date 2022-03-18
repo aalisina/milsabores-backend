@@ -1,1 +1,1 @@
-console.log("The project is running.");
+console.log('The project is running.');
