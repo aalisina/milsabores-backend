@@ -35,4 +35,13 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  deleteOne: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await UserService.deleteOne(id);
+      res.status(204).json({ message: `User with id: ${id} deleted from DB.` });
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
