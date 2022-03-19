@@ -17,4 +17,12 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  findOne: async (req, res) => {
+    try {
+      const user = await UserService.findOne(req.params.id);
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
