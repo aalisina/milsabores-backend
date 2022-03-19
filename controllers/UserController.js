@@ -25,4 +25,14 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  updateOne: async (req, res) => {
+    const { id } = req.params;
+    const { body } = req;
+    try {
+      const updatedUser = await UserService.updateOne(id, body);
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
