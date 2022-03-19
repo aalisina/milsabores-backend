@@ -4,6 +4,6 @@ const router = express.Router();
 const { UserValidator } = require('../validators');
 const { UserController } = require('../controllers');
 
-router.post('/api/users', UserValidator.create, UserController.create);
+router.post('/users', UserValidator.create, UserController.create);
 
 module.exports = router;
