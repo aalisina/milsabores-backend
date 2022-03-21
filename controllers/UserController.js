@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 const { UserService } = require('../services');
-const { comparePasswords } = require('../utils');
+const { comparePasswords, createToken } = require('../utils');
 
 module.exports = {
   create: async (req, res) => {
@@ -71,7 +71,9 @@ module.exports = {
       const isValid = comparePasswords(user.password, password);
       if (!isValid) res.status(400).json({ message: 'Error on credentials.' });
       // Generate a token
-      res.status(200).json({ message: 'Login succesfull', token: 'Here is the token.' });
+      const token = createToken(user);
+      if (!token) res.status(500).json({ message: 'Error on token creation' });
+      res.status(200).json({ message: 'Login succesfull', token });
     } catch (err) {
       res.status(400).json(err);
     }
