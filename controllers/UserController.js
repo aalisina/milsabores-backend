@@ -69,7 +69,7 @@ module.exports = {
       const user = await UserService.findOneByEmail(email);
       if (!user) res.status(400).json({ Message: 'Error on credentials.' });
       const isValid = comparePasswords(user.password, password);
-      if (!isValid) res.status(400).json({ message: 'Password invalid.' });
+      if (!isValid) res.status(400).json({ message: 'Error on credentials.' });
       // Generate a token
       res.status(200).json({ message: 'Login succesfull', token: 'Here is the token.' });
     } catch (err) {
