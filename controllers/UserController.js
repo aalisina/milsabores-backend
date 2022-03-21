@@ -2,7 +2,10 @@ const { UserService } = require('../services');
 
 module.exports = {
   create: async (req, res) => {
+    const { email } = req.body;
     try {
+      const userExists = await UserService.findOneByEmail(email);
+      if (userExists) res.status(400).json({ message: 'Email taken.' });
       const user = await UserService.create(req.body);
       res.status(201).json(user);
     } catch (err) {
@@ -29,7 +32,9 @@ module.exports = {
     const { id } = req.params;
     const { body } = req;
     try {
-      const updatedUser = await UserService.updateOne(id, body);
+      const user = await UserService.findOne(id);
+      if (!user) return res.status(404).json({ message: 'User not found.' });
+      const updatedUser = await UserService.updateOne(user, body);
       res.status(200).json(updatedUser);
     } catch (err) {
       res.status(400).json(err);
