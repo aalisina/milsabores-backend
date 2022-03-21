@@ -7,7 +7,7 @@ module.exports = {
     const { email } = req.body;
     try {
       const userExists = await UserService.findOneByEmail(email);
-      if (userExists) res.status(400).json({ message: 'Email taken.' });
+      if (userExists) return res.status(400).json({ message: 'Email taken.' });
       const user = await UserService.create(req.body);
       res.status(201).json(user);
     } catch (err) {
