@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { UserService } = require('../services');
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
       const user = await UserService.findOne(id);
       if (!user) return res.status(404).json({ message: 'User not found.' });
       const updatedUser = await UserService.updateOne(user, body);
-      res.status(200).json(updatedUser);
+      return res.status(200).json(updatedUser);
     } catch (err) {
       res.status(400).json(err);
     }
@@ -45,6 +46,18 @@ module.exports = {
     try {
       await UserService.deleteOne(id);
       res.status(204).json({ message: `User with id: ${id} deleted from DB.` });
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
+  signup: async (req, res) => {
+    const { email } = req.body;
+    try {
+      const userExists = await UserService.findOneByEmail(email);
+      if (userExists) res.status(400).json({ message: 'Email taken.' });
+      const user = await UserService.create(req.body);
+      user.password = undefined;
+      res.status(201).json(user);
     } catch (err) {
       res.status(400).json(err);
     }

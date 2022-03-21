@@ -4,6 +4,7 @@ const { errors } = require('celebrate');
 const router = express.Router();
 
 router.use(require('./UserRouter'));
+router.use(require('./AuthRouter'));
 
 router.use(errors({ statusCode: 400, message: 'Validation failed.' }));
 
