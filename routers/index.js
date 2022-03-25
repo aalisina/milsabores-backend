@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.use(require('./UserRouter'));
 router.use(require('./AuthRouter'));
+router.use(require('./OrderRouter'));
 
 router.use(errors({ statusCode: 400, message: 'Validation failed.' }));
 
