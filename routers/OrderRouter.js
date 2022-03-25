@@ -1,8 +1,9 @@
 const express = require('express');
+const { OrderValidator } = require('../validators');
 
 const router = express.Router();
 
-router.post('/orders', (req, res) => {
+router.post('/orders', OrderValidator.create, (req, res) => {
   const { body } = req;
   try {
     res.status(201).json(body);
