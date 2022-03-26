@@ -10,7 +10,6 @@ module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
       lunches: Joi.array().items(lunch),
-      quantity: Joi.string().required(),
       user: Joi.string().required(),
     }),
   }),
