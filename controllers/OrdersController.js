@@ -10,5 +10,13 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  findAll: async (req, res) => {
+    try {
+      const orders = await OrdersService.findAll();
+      res.status(200).json(orders);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 
 };
