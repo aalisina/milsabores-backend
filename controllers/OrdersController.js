@@ -18,5 +18,14 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  findOrdersUser: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const ordersUser = await OrdersService.findOrdersUser(userId);
+      res.status(200).json(ordersUser);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 
 };
