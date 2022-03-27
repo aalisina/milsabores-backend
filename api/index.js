@@ -1,9 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const api = express();
 const PORT = process.env.PORT || 3000;
 
+api.use(cors());
 api.use(morgan('common'));
 api.use(express.urlencoded({ extended: true }));
 api.use(express.json({ extended: true }));
