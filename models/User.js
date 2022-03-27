@@ -33,6 +33,11 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  role: {
+    type: String,
+    enum: ['ADMIN', 'CUSTOMER'],
+    default: 'CUSTOMER',
+  },
   password: {
     type: String,
     required: true,
