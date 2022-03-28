@@ -43,6 +43,9 @@ const userSchema = new Schema({
     required: true,
     trim: true,
   },
+  forgot_password_key: {
+    type: String,
+  },
 }, {
   timestamps: true,
   versionKey: false,
