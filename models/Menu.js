@@ -14,7 +14,7 @@ const menuSchema = new Schema({
     required: true,
   },
   soup_fruit: {
-    type: String,
+    type: Array,
     required: true,
   },
   sides: {
