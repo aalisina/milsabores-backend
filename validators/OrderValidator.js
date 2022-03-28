@@ -4,7 +4,6 @@ const lunch = Joi.object().keys({
   protein: Joi.string().required(),
   drink: Joi.string().required(),
   soup_fruit: Joi.string().required(),
-  other: Joi.string().required(),
   sides: Joi.array().required(),
   quantity: Joi.number().required(),
 });
