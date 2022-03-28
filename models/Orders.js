@@ -13,6 +13,14 @@ const orderSchema = new Schema({
       type: String,
       required: true,
     },
+    soup_fruit: {
+      type: String,
+      required: true,
+    },
+    sides: {
+      type: Array,
+      required: true,
+    },
     quantity: {
       type: Number,
       required: true,
