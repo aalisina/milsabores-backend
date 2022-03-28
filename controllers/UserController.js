@@ -68,12 +68,12 @@ module.exports = {
     const { email, password } = req.body;
     try {
       const user = await UserService.findOneByEmail(email);
-      if (!user) res.status(400).json({ Message: 'Error on credentials.' });
+      if (!user) return res.status(400).json({ Message: 'Error on credentials.' });
       const isValid = comparePasswords(user.password, password);
-      if (!isValid) res.status(400).json({ message: 'Error on credentials.' });
+      if (!isValid) return res.status(400).json({ message: 'Error on credentials.' });
       // Generate a token
       const token = createToken(user);
-      if (!token) res.status(500).json({ message: 'Error on token creation' });
+      if (!token) return res.status(500).json({ message: 'Error on token creation' });
       res.status(200).json({ message: 'Login succesfull', token });
     } catch (err) {
       res.status(400).json(err);
