@@ -8,4 +8,5 @@ module.exports = {
     const newMenu = await new Menu(body).save();
     return newMenu;
   },
+  getMenu: () => Menu.find(),
 };
