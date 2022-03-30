@@ -9,7 +9,7 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
     }
-  }, 
+  },
   findAll: async (req, res) => {
     try {
       const orders = await OrdersService.findAll();

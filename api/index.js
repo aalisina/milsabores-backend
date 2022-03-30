@@ -1,8 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
+const http = require('http');
 const cors = require('cors');
 
 const api = express();
+const server = http.createServer(api);
 const PORT = process.env.PORT || 3000;
 
 api.use(cors());
@@ -15,4 +17,4 @@ api.get('/', (req, res) => {
   res.send('Backend running.');
 });
 
-module.exports = { api, PORT };
+module.exports = { api, server, PORT };
