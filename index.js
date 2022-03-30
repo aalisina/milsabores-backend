@@ -22,8 +22,6 @@ server.listen(PORT, (err) => {
   if (err) {
     // eslint-disable-next-line no-undef
     console.log(err);
-    process.exit(1);
-    return;
   }
   // eslint-disable-next-line no-undef
   console.log(`
