@@ -28,7 +28,7 @@ server.listen(PORT, (err) => {
   // eslint-disable-next-line no-undef
   console.log(`
     ################################################
-    🛡️  Server listening on https://localhost:${PORT} 🛡️ 
+        🛡️  Server listening on port: ${PORT} 🛡️ 
     ################################################
   `);
 });
