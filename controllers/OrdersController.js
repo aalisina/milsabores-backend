@@ -1,10 +1,14 @@
 const { OrdersService } = require('../services');
+const webSocket = require('../index');
 
 module.exports = {
   create: async (req, res) => {
     const { body } = req;
     try {
       const order = await OrdersService.create(body);
+
+      webSocket.io.emit('new-order', order);
+      console.log('Emitted');
       res.status(201).json(order);
     } catch (err) {
       res.status(400).json(err);
