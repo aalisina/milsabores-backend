@@ -7,6 +7,11 @@ module.exports = {
     try {
       const order = await OrdersService.create(body);
 
+      // Get all the existing orders from the day and add it to the last order
+      // Or make another endpoint to get the orders of the day
+
+      // Get the names and addresses of the users and sent it in a new format
+
       webSocket.io.emit('new-order', order);
       console.log('Emitted');
       res.status(201).json(order);
