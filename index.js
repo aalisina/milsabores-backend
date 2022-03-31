@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const { Server } = require('socket.io');
 const http = require('http');
 const { api, PORT } = require('./api');
+const { verifySocketAdmin } = require('./middlewares');
 
 const server = http.createServer(api);
 
@@ -20,10 +21,8 @@ mongoose.connect(
 
 server.listen(PORT, (err) => {
   if (err) {
-    // eslint-disable-next-line no-undef
     console.log(err);
   }
-  // eslint-disable-next-line no-undef
   console.log(`
     ################################################
         🛡️  Server listening on port: ${PORT} 🛡️ 
@@ -31,13 +30,13 @@ server.listen(PORT, (err) => {
   `);
 });
 
-// const io = require('./socket').init(server);
-
 io.on('connection', (socket) => {
   console.log('Connection success', socket.id);
   socket.on('disconnect', () => {
     console.log('Connection disconnected', socket.id);
   });
 });
+
+io.use(verifySocketAdmin);
 
 module.exports.io = io;

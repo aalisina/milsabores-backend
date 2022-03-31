@@ -32,4 +32,20 @@ module.exports = {
       res.status(401).json({ message: 'Auth error' });
     }
   },
+  verifySocketAdmin: (socket, next) => {
+    try {
+      const { token } = socket.handshake.headers;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const { role } = decoded;
+
+      if (role === 'ADMIN') {
+        next();
+      } else {
+        next(new Error('Unauthorized user.'));
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
+  },
 };
