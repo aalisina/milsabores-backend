@@ -27,6 +27,7 @@ module.exports = {
       first_name: user.first_name,
       last_name: user.last_name,
       address: user.address,
+      email: user.email,
       userId: user._id,
       orderId: order._id,
       order,
