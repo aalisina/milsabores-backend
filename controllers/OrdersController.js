@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { OrdersService } = require('../services');
 const webSocket = require('../index');
 
@@ -13,7 +14,6 @@ module.exports = {
       // Get the names and addresses of the users and sent it in a new format
 
       webSocket.io.emit('new-order', order);
-      console.log('Emitted');
       res.status(201).json(order);
     } catch (err) {
       res.status(400).json(err);
