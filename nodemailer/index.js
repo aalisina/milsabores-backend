@@ -29,7 +29,7 @@ module.exports = {
 
       const mailOptions = {
         from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
-        to: process.env.EMAIL_TEST_TO,
+        to: order.email,
         subject: 'Hello from Gmail. First mail using nodemailer from gmail',
         text: 'Hello from Gmail. First mail using nodemailer from gmail',
         html: `<h3>Hello from Gmail. First mail using nodemailer from gmail<h3><br>
