@@ -1,20 +1,22 @@
 /* eslint-disable consistent-return */
-const { OrdersService } = require('../services');
+const { OrdersService, UserService } = require('../services');
 const webSocket = require('../index');
+const { newOrderMaker } = require('../utils');
 
 module.exports = {
   create: async (req, res) => {
     const { body } = req;
+    const { user } = body;
     try {
+      const userFromDB = await UserService.findOne(user);
+      if (!userFromDB) return res.status(400).json({ message: 'User does not exist.' });
       const order = await OrdersService.create(body);
 
-      // Get all the existing orders from the day and add it to the last order
-      // Or make another endpoint to get the orders of the day
+      // Get the name and address of the user and sent it in a new format
+      const respObj = newOrderMaker(userFromDB, order);
 
-      // Get the names and addresses of the users and sent it in a new format
-
-      webSocket.io.emit('new-order', order);
-      res.status(201).json(order);
+      webSocket.io.emit('new-order', respObj);
+      res.status(201).json(respObj);
     } catch (err) {
       res.status(400).json(err);
     }
@@ -36,6 +38,9 @@ module.exports = {
     } catch (err) {
       res.status(400).json(err);
     }
+  },
+  findOrdersToday: async (req, res) => {
+    res.send('Orders of today');
   },
 
 };

@@ -22,4 +22,15 @@ module.exports = {
       return undefined;
     }
   },
+  newOrderMaker: (user, order) => {
+    const respObj = {
+      first_name: user.first_name,
+      last_name: user.last_name,
+      address: user.address,
+      userId: user._id,
+      orderId: order._id,
+      order,
+    };
+    return respObj;
+  },
 };
