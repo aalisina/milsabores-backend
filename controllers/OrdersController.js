@@ -39,6 +39,7 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  // Implement functionality to send all the orders of today to the admin
   findOrdersToday: async (req, res) => {
     res.send('Orders of today');
   },
