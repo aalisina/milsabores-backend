@@ -15,6 +15,9 @@ module.exports = {
       // Get the name and address of the user and sent it in a new format
       const respObj = newOrderMaker(userFromDB, order);
 
+      // Implement a functionality to e-mail the users his/her new order 
+      // Use nodemailer to do it
+
       webSocket.io.emit('new-order', respObj);
       res.status(201).json(respObj);
     } catch (err) {
