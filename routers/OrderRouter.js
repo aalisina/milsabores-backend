@@ -11,4 +11,3 @@ router.get('/orders/today', verifyTokenAdmin, OrdersController.findOrdersToday);
 router.get('/orders/:userId', OrdersController.findOrdersUser);
 
 module.exports = router;
-// 623fda7fbedc758626c79159
