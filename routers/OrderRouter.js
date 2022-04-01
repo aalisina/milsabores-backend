@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.post('/orders', OrderValidator.create, OrdersController.create);
 router.get('/orders', OrdersController.findAll);
-router.get('/orders/today', OrdersController.findOrdersToday);
+router.get('/orders/today', verifyTokenAdmin, OrdersController.findOrdersToday);
 router.get('/orders/:userId', OrdersController.findOrdersUser);
 
 module.exports = router;
+// 623fda7fbedc758626c79159
