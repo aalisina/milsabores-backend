@@ -41,7 +41,17 @@ module.exports = {
   },
   // Implement functionality to send all the orders of today to the admin
   findOrdersToday: async (req, res) => {
-    res.send('Orders of today');
+    try {
+      const ordersToday = await OrdersService.findOrdersToday;
+      if (!ordersToday) return res.status(400).json({ message: 'No orders for today.' });
+
+      // implement a function to sort the orders and populate users with their data
+      // const sortedOrders = sortOrdersToday(ordersToday)
+
+      res.status(400).json(ordersToday);
+    } catch (err) {
+      res.status(400).json(err);
+    }
   },
 
 };
