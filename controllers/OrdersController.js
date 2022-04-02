@@ -12,6 +12,8 @@ module.exports = {
     try {
       const userFromDB = await UserService.findOne(user);
       if (!userFromDB) return res.status(400).json({ message: 'User does not exist.' });
+      if (!userFromDB.address) return res.status(400).json({ message: 'User must give an address.' });
+      if (!userFromDB.email_verified) return res.status(400).json({ message: 'Email of user must be verified.' });
       const order = await OrdersService.create(body);
 
       // Get the name and address of the user and sent it in a new format
