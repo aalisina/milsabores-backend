@@ -3,7 +3,7 @@
 const { OrdersService, UserService } = require('../services');
 const webSocket = require('../index');
 const { newOrderMaker } = require('../utils');
-const { sendMail } = require('../nodemailer');
+const { sendConfirmationMail } = require('../nodemailer');
 
 module.exports = {
   create: async (req, res) => {
@@ -19,7 +19,7 @@ module.exports = {
 
       // Implement a functionality to e-mail the users his/her new order
       // Use nodemailer to do it
-      sendMail(respObj).then(() => console.log('Email sent succesfully'))
+      sendConfirmationMail(respObj).then(() => console.log('Email sent succesfully'))
         .catch((err) => console.log('Error while sending email', err));
 
       webSocket.io.emit('new-order', respObj);
