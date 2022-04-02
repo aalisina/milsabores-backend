@@ -85,4 +85,7 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  verifyEmail: (req, res) => {
+    res.send('Email verified');
+  },
 };
