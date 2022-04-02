@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { htmlMaker } = require('./verificationHtml');
 
 module.exports = {
@@ -7,16 +8,18 @@ module.exports = {
     const html = htmlMaker(responseObject);
 
     // In case html is now shown, this text will be shown
-    const text = `${responseObject.first_name}, su pedido ha sido creado exitosamente
+    const text = `${responseObject.first_name}, muchas gracias por registrarse
     
-    Es un placer para nosotros poder entregarle los mejores almuerzos, gracias por elegirnos. 
-    Cada día trabajamos para brindarles un mejor servicio, agradecemos su confianza.
+    Es un placer para nosotros que comience. Primero, necesita confirmar su correo. 
+    Simplemente copia y pega el siguiente enlace en su navegador: 
+ 
+    ${process.env.BACK_END_BASE_URL}/api/v1/verify/${responseObject._id}
     `;
 
     const mailOptions = {
       from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
       to: responseObject.email,
-      subject: `${responseObject.first_name}, ¡muchas gracias por su pedido!`,
+      subject: `${responseObject.first_name}, ¡muchas gracias por registrarse!`,
       text,
       html,
 
