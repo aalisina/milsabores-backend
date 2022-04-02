@@ -1,12 +1,19 @@
 module.exports = {
   confirmationEmail: (responseObject) => {
+    // Create a function createConfirmationText(responseObject)
+    // that will return the text for the recipient
+    const text = 'Text will be generated';
+
+    const html = 'Html will be generated';
+    // Create a function createConfirmationHTML(responseObject)
+    // that will return the html for the recipient
+
     const mailOptions = {
       from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
       to: responseObject.email,
-      subject: 'Hello from Gmail. First mail using nodemailer from gmail',
-      text: 'Hello from Gmail. First mail using nodemailer from gmail',
-      html: `<h3>Hello from Gmail. First mail using nodemailer from gmail<h3><br>
-                    <p>${responseObject.first_name}</p>`,
+      subject: `${responseObject.first_name}, ¡muchas gracias por su pedido!`,
+      text,
+      html,
 
     };
     return mailOptions;
