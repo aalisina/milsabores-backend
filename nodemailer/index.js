@@ -1,5 +1,5 @@
 const { createGmailTransport } = require('../config/mailconfig');
-const { confirmationEmail } = require('./mail-templates');
+const { confirmationEmail, emailVerification } = require('./mail-templates');
 
 module.exports = {
   // responseObject parameter should always have the email of the recipient passed through
@@ -16,4 +16,18 @@ module.exports = {
       return err;
     }
   },
+  sendEmailVerification: async (responseObject) => {
+    try {
+      // Create a new transport
+      const transport = await createGmailTransport();
+      // Create mailOptions for this type of email
+      const mailOptions = emailVerification(responseObject);
+      // Send the email
+      const resultEmail = transport.sendMail(mailOptions);
+      return resultEmail;
+    } catch (err) {
+      return err;
+    }
+  },
+
 };
