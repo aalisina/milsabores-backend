@@ -13,7 +13,6 @@ module.exports = {
     Cada día trabajamos para brindarles un mejor servicio, agradecemos su confianza.
     `;
 
-
     const mailOptions = {
       from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
       to: responseObject.email,
