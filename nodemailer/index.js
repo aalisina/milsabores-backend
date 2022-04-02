@@ -1,4 +1,4 @@
-const { createGmailTransport } = require('./mailconfig');
+const { createGmailTransport } = require('../config/mailconfig');
 const { confirmationEmail } = require('./mail-templates');
 
 module.exports = {
