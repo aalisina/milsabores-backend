@@ -1,10 +1,11 @@
+const { htmlMaker } = require('./confirmationHtml');
+
 module.exports = {
   confirmationEmail: (responseObject) => {
     // Create a function createConfirmationText(responseObject)
     // that will return the text for the recipient
-    const text = 'Text will be generated';
-
-    const html = 'Html will be generated';
+    const html = htmlMaker(responseObject)
+    const text = 'Html will be generated';
     // Create a function createConfirmationHTML(responseObject)
     // that will return the html for the recipient
 
