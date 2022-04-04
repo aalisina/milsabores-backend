@@ -105,4 +105,24 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  forgotPassword: async (req, res) => {
+    const { email } = req.body;
+
+    try {
+      const user = await UserService.findOneByEmail(email);
+
+      // Not sending an error message for privacy reasons
+      if (!user) return res.status(200).json({ message: 'If user exists you will get an email to reset your password' });
+      // Implement function to make a reset key for the user
+      // using uuid makeResetKey()
+
+      // save resetkey in user
+
+      // Email user reset link
+
+      res.status(200).json({ message: 'If user exists you will get an email to reset your password' });
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
