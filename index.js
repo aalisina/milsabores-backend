@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const mongoose = require('mongoose');
+const express = require('express');
 const { Server } = require('socket.io');
 const http = require('http');
 const { api, PORT } = require('./api');
 const { verifySocketAdmin } = require('./middlewares');
 
+api.use(express.static('public'));
 const server = http.createServer(api);
 
 const { MONGO_URI } = require('./config');
