@@ -8,7 +8,7 @@ const path = require('path');
 const api = express();
 
 // Setting up view engine
-api.set('views', path.join(__dirname, 'views'));
+api.set('views', path.join(__dirname, '../views'));
 api.set('view engine', 'ejs');
 const PORT = process.env.PORT || 3000;
 
