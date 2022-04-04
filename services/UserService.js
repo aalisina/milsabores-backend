@@ -10,4 +10,9 @@ module.exports = {
   },
   deleteOne: (id) => User.findByIdAndDelete(id),
   findOneByEmail: (email) => User.findOne({ email }),
+  verifyEmail: (user) => {
+    // eslint-disable-next-line no-param-reassign
+    user.email_verified = true;
+    return user.save();
+  },
 };

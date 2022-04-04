@@ -85,7 +85,23 @@ module.exports = {
       res.status(400).json(err);
     }
   },
-  verifyEmail: (req, res) => {
-    res.send('Email verified');
+  verifyEmail: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const user = await UserService.findOne(id);
+      if (!user) return res.status(400).json({ message: 'User not exist.' });
+      const userEmailVerified = await UserService.verifyEmail(user);
+
+      // Prevent sending user's hashed password back to client
+      userEmailVerified.password = undefined;
+
+      // Implement function to show a success message that the email has been verified
+
+      // Redirect to the homepage of the frontend
+
+      res.status(200).json(userEmailVerified);
+    } catch (err) {
+      res.status(400).json(err);
+    }
   },
 };
