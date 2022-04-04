@@ -96,10 +96,11 @@ module.exports = {
       userEmailVerified.password = undefined;
 
       // Implement function to show a success message that the email has been verified
-
+      res.render('email-verification/index', {
+        frontEndUrl: process.env.FRONT_END_BASE_URL,
+        user: userEmailVerified,
+      });
       // Redirect to the homepage of the frontend
-
-      res.status(200).json(userEmailVerified);
     } catch (err) {
       res.status(400).json(err);
     }
