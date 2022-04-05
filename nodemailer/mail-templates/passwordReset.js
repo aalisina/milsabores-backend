@@ -2,7 +2,7 @@
 const { htmlMaker } = require('./passwordResetHtml');
 
 module.exports = {
-  emailVerification: (responseObject) => {
+  emailPasswordReset: (responseObject) => {
     // Function createConfirmationHTML(responseObject)
     // that will return the html for the recipient
     const html = htmlMaker(responseObject);
