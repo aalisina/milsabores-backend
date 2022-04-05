@@ -1,8 +1,7 @@
-/* eslint-disable no-underscore-dangle */
 module.exports = {
-  htmlMaker: (respObj) => {
-    const verificationKey = respObj._id;
-    const htmlPage = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  htmlMaker: (updatedUser) => {
+    const verificationKey = updatedUser.forgot_password_key;
+    return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
     <!--[if gte mso 9]>
@@ -183,7 +182,7 @@ module.exports = {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 55px;font-family:'Montserrat',sans-serif;" align="left">
             
       <h1 class="v-font-size" style="margin: 0px; line-height: 160%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: 'Montserrat',sans-serif; font-size: 33px;">
-        <strong>${respObj.first_name}, gracias por crear una cuenta</strong>
+        <strong>${respObj.first_name}, recibimos una solicitud para cambiar su contraseña.</strong>
       </h1>
     
           </td>
@@ -197,7 +196,7 @@ module.exports = {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 60px 50px;font-family:'Montserrat',sans-serif;" align="left">
             
       <div style="color: #444444; line-height: 170%; text-align: center; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Es un placer para nosotros que comience. Primero, necesita confirmar su correo. Simplemente presione el botón de abajo. </span></p>
+        <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Si usted solicitó el cambio, simplemente presione el botón de abajo. De lo contrario, ignore este mensaje. </span></p>
       </div>
     
           </td>
@@ -253,7 +252,7 @@ module.exports = {
     <!--[if (mso)|(IE)]><td align="center" width="380" style="background-color: #cca250;width: 380px;padding: 20px;border-top: 1px solid #CCC;border-left: 1px solid #CCC;border-right: 1px solid #CCC;border-bottom: 1px solid #CCC;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
         <div align="center">
             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Montserrat',sans-serif;"><tr><td style="font-family:'Montserrat',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://milsabores.com" style="height:47px; v-text-anchor:middle; width:196px;" arcsize="8.5%" stroke="f" fillcolor="#cca250"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Montserrat',sans-serif;"><![endif]-->
-              <a href="${process.env.BACK_END_BASE_URL}/api/v1/verify/${verificationKey}" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:'Montserrat',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #cca250; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+              <a href="${process.env.BACK_END_BASE_URL}/api/v1/forgot/${verificationKey}" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:'Montserrat',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #cca250; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
                 <span style="display:block;padding:14px 33px;line-height:120%;"><strong><span style="font-size: 16px; line-height: 19.2px;">Haga Click Aqu&iacute; &rarr;</span></strong></span>
               </a>
             <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
@@ -325,7 +324,7 @@ module.exports = {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 60px 20px;font-family:'Montserrat',sans-serif;" align="left">
             
       <div style="color: #444444; line-height: 170%; text-align: center; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Simplemente copie y pegue el siguiente enlace en su navegador: "${process.env.BACK_END_BASE_URL}/api/v1/verify/${verificationKey}"</span></p>
+        <p style="font-size: 14px; line-height: 170%;"><span style="font-size: 16px; line-height: 27.2px;">Simplemente copie y pegue el siguiente enlace en su navegador: "${process.env.BACK_END_BASE_URL}/api/v1/forgot/${verificationKey}"</span></p>
       </div>
     
           </td>
@@ -451,8 +450,6 @@ module.exports = {
     </body>
     
     </html>
-    `;
-
-    return htmlPage;
+    `
   },
 };

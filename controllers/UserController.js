@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable consistent-return */
 const { UserService } = require('../services');
-const { comparePasswords, createToken } = require('../utils');
-const { sendEmailVerification } = require('../nodemailer');
+const { comparePasswords, createToken, makeResetKey } = require('../utils');
+const { sendEmailVerification, sendPasswordReset } = require('../nodemailer');
 
 module.exports = {
   create: async (req, res) => {
@@ -112,13 +112,18 @@ module.exports = {
       const user = await UserService.findOneByEmail(email);
 
       // Not sending an error message for privacy reasons
-      if (!user) return res.status(200).json({ message: 'If user exists you will get an email to reset your password' });
+      if (!user) return res.status(400).json({ message: 'If user exists you will get an email to reset your password' });
       // Implement function to make a reset key for the user
       // using uuid makeResetKey()
-
+      const key = makeResetKey();
+      const fieldToUpdate = {
+        forgot_password_key: key,
+      };
       // save resetkey in user
+      const updatedUser = await UserService.updateOne(user, fieldToUpdate);
 
       // Email user reset link
+      sendPasswordReset(updatedUser);
 
       res.status(200).json({ message: 'If user exists you will get an email to reset your password' });
     } catch (err) {
