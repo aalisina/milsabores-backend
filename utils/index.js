@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   comparePasswords: (userPassword, reqPassword) => bcrypt.compareSync(reqPassword, userPassword),
@@ -33,5 +34,9 @@ module.exports = {
       order,
     };
     return respObj;
+  },
+  makeResetKey: () => {
+    const key = uuidv4();
+    return key;
   },
 };
