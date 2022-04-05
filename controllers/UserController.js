@@ -123,7 +123,8 @@ module.exports = {
       const updatedUser = await UserService.updateOne(user, fieldToUpdate);
 
       // Email user reset link
-      sendPasswordReset(updatedUser);
+      sendPasswordReset(updatedUser).then(() => console.log('Email sent to reset password.'))
+        .catch((err) => console.log('Error while sending password reset email.', err));
 
       res.status(200).json({ message: 'If user exists you will get an email to reset your password' });
     } catch (err) {
