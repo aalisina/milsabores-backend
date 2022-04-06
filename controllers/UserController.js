@@ -131,4 +131,22 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  changePassword: async (req, res) => {
+    const { userId, key } = req.params;
+    try {
+      const user = await UserService.findOne(userId);
+      if (!user) return res.status(400).json({ message: 'User not found.' });
+      if (!(key === user.forgot_password_key)) return res.status(400).json({ message: 'Invalid key.' });
+      if (key === user.forgot_password_key) {
+        console.log(key);
+        // delete key from DB
+
+        // render view to change password
+
+        return res.status(200).json({ message: 'Keys match.' });
+      }
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };

@@ -47,4 +47,10 @@ module.exports = {
       email: Joi.string().email().required(),
     }),
   }),
+  changePassword: celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      userId: Joi.string().required(),
+      key: Joi.string().required(),
+    }),
+  }),
 };
