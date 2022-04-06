@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -23,9 +23,9 @@
             <!-- Start: Form Container -->
             <div class="form-container">
                 <form method="post" id="form">
-                    <div class="mb-3" style="margin-top: 16px;"><input class="form-control" type="password" id="password" name="password" placeholder="Contraseña Nueva" style="background: rgb(218,218,130);border-radius: 5px;" required></div>
-                    <div class="mb-3"><input class="form-control" type="password" name="password-confirm" id="password-confirm" placeholder="Ingrese contraseña nuevamente" style="background: rgb(218,218,130);border-radius: 5px;" required></div>
-                    <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" onsubmit="submitForm()" style="background: rgb(174,193,9);color: rgb(255,255,255);border-radius: 5px;">Cambiar ahora</button></div>
+                    <div class="mb-3" style="margin-top: 16px;"><input class="form-control" title="Ingrese una contraseña de mínimo 6 caracteres" type="password" id="password" name="password" placeholder="Contraseña Nueva (mínimo 6 caracteres)" minlength="6" style="background: rgb(218,218,130);border-radius: 5px;" required></div>
+                    <div class="mb-3"><input class="form-control" type="password" title="Ingrese nuevamente su contraseña de mínimo 6 caracteres" name="password-confirm" id="password-confirm" placeholder="Ingrese contraseña nuevamente" style="background: rgb(218,218,130);border-radius: 5px;" minlength="6" required></div>
+                    <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(174,193,9);color: rgb(255,255,255);border-radius: 5px;">Cambiar ahora</button></div>
                 </form>
             </div><!-- End: Form Container -->
         </section><!-- End: Registration Form with Photo -->
