@@ -13,8 +13,7 @@ module.exports = {
     Si usted solicitó el cambio, simplemente copie y pegue el siguiente enlace en su navegador. 
     De lo contrario, ignore este mensaje.  
  
-    ${process.env.BACK_END_BASE_URL}/api/v1/forgot/${responseObject.forgot_password_key}
-    `;
+    ${process.env.BACK_END_BASE_URL}/api/v1/forgot/${responseObject._id}/${responseObject.forgot_password_key}`;
 
     const mailOptions = {
       from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
