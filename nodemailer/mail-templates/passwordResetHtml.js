@@ -134,7 +134,7 @@ module.exports = {
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <h2 align="center" border="0" style="outline: none; color: white; text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 33%;max-width: 184.8px;" width="184.8" class="v-src-width v-src-max-width" >Mil Sabores</h2>h1>
+        <img align="center" border="0" src="cid:image-5" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 33%;max-width: 184.8px;" width="184.8" class="v-src-width v-src-max-width"/>
           
         </td>
       </tr>

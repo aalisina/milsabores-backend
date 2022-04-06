@@ -22,6 +22,11 @@ module.exports = {
       subject: `Hola ${responseObject.first_name}, recibimos una solicitud para cambiar su contraseña`,
       text,
       html,
+      attachments: [{
+        filename: 'image-5.png',
+        path: `${__dirname}/../../public/assets/images/image-5.png`,
+        cid: 'image-5', // same cid value as in the html img src
+      }],
 
     };
     return mailOptions;

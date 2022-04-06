@@ -19,6 +19,11 @@ module.exports = {
       subject: `${responseObject.first_name}, ¡muchas gracias por su pedido!`,
       text,
       html,
+      attachments: [{
+        filename: 'image-5.png',
+        path: `${__dirname}/../../public/assets/images/image-5.png`,
+        cid: 'image-5', // same cid value as in the html img src
+      }],
 
     };
     return mailOptions;
