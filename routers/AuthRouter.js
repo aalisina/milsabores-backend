@@ -10,8 +10,12 @@ router.post('/login', UserValidator.login, UserController.login);
 router.get('/verify/:id', UserValidator.verifyEmail, UserController.verifyEmail);
 router.post('/forgot', UserValidator.forgotPassword, UserController.forgotPassword);
 router.get('/forgot/:userId/:key', UserValidator.changePassword, UserController.changePassword);
-router.post('/forgot/:userId/:key', (req, res) => res.send('Working.'),
+router.post('/forgot/:userId/:key', (req, res) => {
+  const { body } = req;
+  console.log(JSON.parse(body));
+  res.status(200).json(req.body);
+});
 // UserValidator.updatePassword, UserController.updatePassword
-);
+// );
 
 module.exports = router;
