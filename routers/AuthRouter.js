@@ -12,8 +12,7 @@ router.post('/forgot', UserValidator.forgotPassword, UserController.forgotPasswo
 router.get('/forgot/:userId/:key', UserValidator.changePassword, UserController.changePassword);
 router.post('/forgot/:userId/:key', (req, res) => {
   const { body } = req;
-  console.log(JSON.parse(body));
-  res.status(200).json(req.body);
+  res.status(200).send(body);
 });
 // UserValidator.updatePassword, UserController.updatePassword
 // );
