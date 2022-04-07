@@ -136,17 +136,8 @@ module.exports = {
     try {
       const user = await UserService.findOne(userId);
       if (!user) return res.status(400).json({ message: 'User not found.' });
-      if (!(key === user.forgot_password_key)) return res.status(400).json({ message: 'Invalid key.' });
+      if (!(key === user.forgot_password_key)) return res.render('invalid-key/index');
       if (key === user.forgot_password_key) {
-        console.log(key);
-        // delete key from DB, better to do it in the post route
-        // const emptyKeyChangePass = {
-        //   forgot_password_key: '',
-        //   password: newPassword,
-        // };
-        // await UserService.updateOne(user, emptyKeyChangePass);
-        // render view to change password
-
         res.render('change-password/index');
       }
     } catch (err) {
