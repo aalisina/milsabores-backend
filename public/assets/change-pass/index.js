@@ -4,10 +4,9 @@ const params = url_string.split('/forgot/')[1];
 const userId = params.split('/')[0];
 const key = params.split('/')[1];
 const baseUrlBack = url_string.split('/api/')[0];
-// console.log('userId is :', userId);
-// console.log('Key is :', key);
-// console.log('Base url is :', baseUrlBack);
+
 const sendNewPassword = function(password) {
+  const urlFront = 'https://google.com';
   const objSend = {
     password
   };
@@ -17,19 +16,29 @@ const sendNewPassword = function(password) {
     headers: { 'Content-Type': 'application/json' },
     body: objSendString, 
   }).then((response) => {
+    console.log(response);
     if (response.status === 200) {
-      const urlFront = 'https://google.com';
+      
 
       Swal.fire({
         title: 'Contraseña actualizada exitosamente',
         text: 'Ahora puede iniciar sesión y hacer un pedido',
         icon: 'success',
       }).then((response) => {
+        console.log(response);
+           window.location = urlFront
+      }).catch((err) => console.log(err));
+    } else if(response.status === 400) {
+      Swal.fire({
+        title: 'La clave para cambiar su contraseña ha expirado',
+        text: 'Solicite nuevamente un correo para cambiar su contraseña',
+        icon: 'error',
+      }).then((response) => {
            window.location = urlFront
       }).catch((err) => console.log(err));
     }
   })
-    .catch((err) => console.log(err));
+   
 };
 const form = document.getElementById('form');
 form.addEventListener('submit', (e) => {
@@ -37,7 +46,7 @@ form.addEventListener('submit', (e) => {
   const password = document.getElementById('password').value;
   const passwordConfirm = document.getElementById('password-confirm').value;
   if (password === passwordConfirm) {
-    console.log(password);
+  
     sendNewPassword(password);
   } else {
     Swal.fire({

@@ -153,4 +153,26 @@ module.exports = {
       res.status(400).json(err);
     }
   },
+  updatePassword: async (req, res) => {
+    const { userId, key } = req.params;
+    const { password } = req.body;
+    try {
+      const user = await UserService.findOne(userId);
+      if (!user) return res.status(400).json({ message: 'User not found.' });
+      if (!(key === user.forgot_password_key)) return res.status(400).json({ message: 'Invalid key.' });
+      if (key === user.forgot_password_key) {
+        console.log(key);
+        // delete key from DB, better to do it in the post route
+        const emptyKeyChangePass = {
+          forgot_password_key: '',
+          password,
+        };
+        await UserService.updateOne(user, emptyKeyChangePass);
+
+        res.status(200).json({ message: 'Password updated.' });
+      }
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  },
 };
