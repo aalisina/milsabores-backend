@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 module.exports = {
   htmlMaker: (respObj) => {
     let total = 0;
