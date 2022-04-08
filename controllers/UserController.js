@@ -75,6 +75,7 @@ module.exports = {
     try {
       const user = await UserService.findOneByEmail(email);
       if (!user) return res.status(400).json({ Message: 'Error on credentials.' });
+      if (!user.email_verified) return res.status(400).json({ Message: 'Please verify email.' });
       const isValid = comparePasswords(user.password, password);
       if (!isValid) return res.status(400).json({ message: 'Error on credentials.' });
       // Generate a token
