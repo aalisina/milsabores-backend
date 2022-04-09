@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 /* eslint-disable consistent-return */
 const { UserService } = require('../services');
@@ -62,10 +63,18 @@ module.exports = {
       const user = await UserService.create(req.body);
       user.password = undefined;
 
-      // Send verification email
-      sendEmailVerification(user).then(() => console.log('Email sent to verify'))
-        .catch((err) => console.log('Error while sending confirmation email.', err));
-      res.status(201).json(user);
+      try {
+        // Send verification email
+        // return success message
+        // return the created user from DB
+        await sendEmailVerification(user);
+        res.status(201).json(user);
+      } catch (error) {
+        // return an error response message
+        // delete the created user from the DB
+        await UserService.deleteOne(user._id);
+        res.status(400).json({ message: 'Could not send email.' });
+      }
     } catch (err) {
       res.status(400).json(err);
     }
