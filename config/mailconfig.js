@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 const nodemailer = require('nodemailer');
+const nodemailerSendgrid = require('nodemailer-sendgrid');
 const { google } = require('googleapis');
 
 // Gmail credentials for OAuth2
@@ -27,6 +29,18 @@ module.exports = {
       return newTransport;
     } catch (err) {
       return err;
+    }
+  },
+  createSendgridTransport: async () => {
+    try {
+      const transport = await nodemailerSendgrid({
+        apiKey: process.env.SENDGRID_API_KEY,
+      });
+
+      return transport;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   },
 };

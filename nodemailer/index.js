@@ -1,4 +1,4 @@
-const { createGmailTransport } = require('../config/mailconfig');
+const { createSendgridTransport } = require('../config/mailconfig');
 const { confirmationEmail, emailVerification, emailPasswordReset } = require('./mail-templates');
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
   sendConfirmationMail: async (responseObject) => {
     try {
       // Create a new transport
-      const transport = await createGmailTransport();
+      const transport = await createSendgridTransport();
       // Create mailOptions for this type of email
       const mailOptions = confirmationEmail(responseObject);
       // Send the email
@@ -23,7 +23,7 @@ module.exports = {
   sendEmailVerification: async (responseObject) => {
     try {
       // Create a new transport
-      const transport = await createGmailTransport();
+      const transport = await createSendgridTransport();
       // Create mailOptions for this type of email
       const mailOptions = emailVerification(responseObject);
       // Send the email
@@ -36,7 +36,7 @@ module.exports = {
   sendPasswordReset: async (updatedUser) => {
     try {
       // Create a new transport
-      const transport = await createGmailTransport();
+      const transport = await createSendgridTransport();
       // Create mailOptions for this type of email
       const mailOptions = emailPasswordReset(updatedUser);
       // Send the email
