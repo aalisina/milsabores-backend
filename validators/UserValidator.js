@@ -8,6 +8,7 @@ module.exports = {
       email: Joi.string().required(),
       password: Joi.string().required(),
       address: Joi.string().required(),
+      phone: Joi.string().required(),
     }),
   }),
   findOne: celebrate({
@@ -21,6 +22,11 @@ module.exports = {
       last_name: Joi.string(),
       email: Joi.string(),
       password: Joi.string(),
+      address: Joi.string(),
+      phone: Joi.string(),
+      email_verified: Joi.boolean(),
+      forgot_password_key: Joi.string(),
+
     }),
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),
@@ -51,6 +57,15 @@ module.exports = {
     [Segments.PARAMS]: Joi.object().keys({
       userId: Joi.string().required(),
       key: Joi.string().required(),
+    }),
+  }),
+  updatePassword: celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      userId: Joi.string().required(),
+      key: Joi.string().required(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      password: Joi.string().required(),
     }),
   }),
 };
