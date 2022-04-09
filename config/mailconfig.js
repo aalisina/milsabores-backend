@@ -31,9 +31,9 @@ module.exports = {
       return err;
     }
   },
-  createSendgridTransport: async () => {
+  createSendgridTransport: () => {
     try {
-      const transport = await nodemailerSendgrid({
+      const transport = nodemailerSendgrid({
         apiKey: process.env.SENDGRID_API_KEY,
       });
 
