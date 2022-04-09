@@ -28,6 +28,13 @@ const userSchema = new Schema({
   address: {
     type: String,
     trim: true,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
   },
   email_verified: {
     type: Boolean,
