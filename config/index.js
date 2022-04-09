@@ -12,5 +12,6 @@ const config = {
   },
 };
 
+// eslint-disable-next-line no-console
 console.log('Current node environment:', NODE_ENV);
 module.exports = config[NODE_ENV];
