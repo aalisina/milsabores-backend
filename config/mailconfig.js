@@ -33,14 +33,14 @@ module.exports = {
   },
   createSendgridTransport: () => {
     try {
-      const transport = nodemailerSendgrid({
-        apiKey: process.env.SENDGRID_API_KEY,
-      });
-
+      const transport = nodemailer.createTransport(
+        nodemailerSendgrid({
+          apiKey: process.env.SENDGRID_API_KEY,
+        }),
+      );
       return transport;
-    } catch (error) {
-      console.log(error);
-      return error;
+    } catch (err) {
+      return err;
     }
   },
 };
