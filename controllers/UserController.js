@@ -73,6 +73,7 @@ module.exports = {
         // return an error response message
         // delete the created user from the DB
         await UserService.deleteOne(user._id);
+        console.log(error);
         res.status(400).json({ message: 'Could not send email.' });
       }
     } catch (err) {
@@ -106,10 +107,7 @@ module.exports = {
       userEmailVerified.password = undefined;
 
       // Implement function to show a success message that the email has been verified
-      res.render('email-verification/index', {
-        frontEndUrl: process.env.FRONT_END_BASE_URL,
-        user: userEmailVerified,
-      });
+      res.render('email-verification/index');
       // Redirect to the homepage of the frontend
     } catch (err) {
       res.status(400).json(err);
