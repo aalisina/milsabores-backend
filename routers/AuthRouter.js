@@ -10,6 +10,6 @@ router.post('/login', UserValidator.login, UserController.login);
 router.get('/verify/:id', UserValidator.verifyEmail, UserController.verifyEmail);
 router.post('/forgot', UserValidator.forgotPassword, UserController.forgotPassword);
 router.get('/forgot/:userId/:key', UserValidator.changePassword, UserController.changePassword);
-router.post('/forgot/:userId/:key', UserValidator.changePassword, UserController.updatePassword);
+router.post('/forgot/:userId/:key', UserValidator.updatePassword, UserController.updatePassword);
 
 module.exports = router;
