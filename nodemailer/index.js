@@ -10,8 +10,12 @@ module.exports = {
       // Create mailOptions for this type of email
       const mailOptions = confirmationEmail(responseObject);
       // Send the email
-      const resultEmail = transport.sendMail(mailOptions);
-      return resultEmail;
+      try {
+        const resultEmail = transport.sendMail(mailOptions);
+        return resultEmail;
+      } catch (error) {
+        return error;
+      }
     } catch (err) {
       return err;
     }
