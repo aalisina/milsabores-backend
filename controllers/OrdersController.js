@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 /* eslint-disable consistent-return */
 const { OrdersService, UserService } = require('../services');
@@ -21,11 +22,16 @@ module.exports = {
 
       // Implement a functionality to e-mail the users his/her new order
       // Use nodemailer to do it
-      sendConfirmationMail(respObj).then(() => console.log('Email sent succesfully'))
-        .catch((err) => console.log('Error while sending email', err));
-
-      webSocket.io.emit('new-order', respObj);
-      res.status(201).json(respObj);
+      try {
+        sendConfirmationMail(respObj);
+        webSocket.io.emit('new-order', respObj);
+        res.status(201).json(respObj);
+      } catch (error) {
+        console.log(error);
+        // delete order from DB
+        await OrdersService.deleteOne(order._id);
+        res.status(400).json(error);
+      }
     } catch (err) {
       res.status(400).json(err);
     }

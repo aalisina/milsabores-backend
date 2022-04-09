@@ -16,4 +16,5 @@ module.exports = {
     });
     return ordersToday;
   },
+  deleteOne: (id) => Order.findByIdAndDelete(id),
 };
