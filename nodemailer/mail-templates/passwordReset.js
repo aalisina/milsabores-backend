@@ -16,7 +16,7 @@ module.exports = {
     ${process.env.BACK_END_BASE_URL}/api/v1/forgot/${responseObject._id}/${responseObject.forgot_password_key}`;
 
     const mailOptions = {
-      // from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
+      from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
       to: responseObject.email,
       subject: `Hola ${responseObject.first_name}, recibimos una solicitud para cambiar su contraseña`,
       text,
