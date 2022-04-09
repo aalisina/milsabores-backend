@@ -17,7 +17,7 @@ module.exports = {
     `;
 
     const mailOptions = {
-      from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
+      // from: `Mil Sabores <${process.env.EMAIL_ADDRESS}>`,
       to: responseObject.email,
       subject: `${responseObject.first_name}, ¡muchas gracias por registrarse!`,
       text,
