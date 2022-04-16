@@ -4,11 +4,11 @@ const { Schema } = require('mongoose');
 
 const menuSchema = new Schema({
 
-  protein: {
+  proteins: {
     type: Array,
     required: true,
   },
-  drink: {
+  drinks: {
 
     type: Array,
     required: true,
