@@ -31,6 +31,10 @@ const orderSchema = new Schema({
     ref: 'User',
 
   },
+  user_address: {
+    type: String,
+    required: true,
+  },
 }, {
   timestamps: true,
   versionKey: false,

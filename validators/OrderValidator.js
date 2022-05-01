@@ -13,6 +13,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       lunches: Joi.array().items(lunch),
       user: Joi.string().required(),
+      user_address: Joi.string().required(),
     }),
   }),
 };

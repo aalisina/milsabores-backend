@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 /* eslint-disable consistent-return */
@@ -9,12 +10,18 @@ const { sendConfirmationMail } = require('../nodemailer');
 module.exports = {
   create: async (req, res) => {
     const { body } = req;
-    const { user } = body;
+    const { user, user_address } = body;
     try {
       const userFromDB = await UserService.findOne(user);
       if (!userFromDB) return res.status(400).json({ message: 'User does not exist.' });
       if (!userFromDB.address) return res.status(400).json({ message: 'User must give an address.' });
       if (!userFromDB.email_verified) return res.status(400).json({ message: 'Email of user must be verified.' });
+      // update address if the body address does not match the one from the DB
+      if (userFromDB.address !== user_address) {
+        // update the user with the new address
+        UserService.updateOne(userFromDB, { address: user_address });
+      }
+
       const order = await OrdersService.create(body);
 
       // Get the name and address of the user and sent it in a new format
