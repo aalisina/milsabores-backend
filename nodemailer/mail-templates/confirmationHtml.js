@@ -1,11 +1,8 @@
 /* eslint-disable radix */
 module.exports = {
   htmlMaker: (respObj) => {
-    let total = 0;
-    const quantity = respObj.order.lunches.map((el) => {
-      total += el.quantity;
-      return total;
-    });
+    // eslint-disable-next-line max-len
+    const quantity = respObj.order.lunches.reduce((total, currItem) => parseInt(currItem.quantity) + total, 0);
 
     const htmlPage = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
