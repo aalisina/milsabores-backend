@@ -8,6 +8,6 @@ const router = express.Router();
 router.post('/orders', OrderValidator.create, OrdersController.create);
 router.get('/orders', verifyTokenAdmin, OrdersController.findAll);
 router.get('/orders/today', verifyTokenAdmin, OrdersController.findOrdersToday);
-router.get('/orders/:userId', verifyTokenUser, OrdersController.findOrdersUser);
+router.get('/orders/users/:userId', verifyTokenUser, OrdersController.findOrdersUser);
 
 module.exports = router;
