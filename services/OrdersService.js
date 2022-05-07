@@ -8,7 +8,7 @@ module.exports = {
     const today = new Date();
     const startDate = today.setDate(today.getDate() - 1);
     const endDate = today.setDate(today.getDate() + 1);
-    const ordersToday = Order.find({
+    const ordersToday = Order.findAll({
       createdAt: {
         $gte: startDate,
         $lt: endDate,
