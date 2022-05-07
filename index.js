@@ -39,6 +39,6 @@ io.on('connection', (socket) => {
   });
 });
 
-io.use(verifySocketAdmin);
+// io.use(verifySocketAdmin);
 
 module.exports.io = io;
