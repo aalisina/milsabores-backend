@@ -31,7 +31,7 @@ module.exports = {
       // Use nodemailer to do it
       try {
         sendConfirmationMail(respObj);
-        webSocket.io.emit('new-order', respObj);
+        webSocket.io.emit('new-order', { message: 'New order came in.' });
         res.status(201).json(respObj);
       } catch (error) {
         console.log(error);
