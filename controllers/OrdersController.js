@@ -66,15 +66,25 @@ module.exports = {
     try {
       const ordersToday = await OrdersService.findOrdersToday();
       if (!ordersToday) return res.status(400).json({ message: 'No orders for today.' });
-
-      // implement a function to sort the orders and populate users with their data
-      // const sortedOrders = sortOrdersToday(ordersToday)
-      // eslint-disable-next-line max-len
-      // const ordersWithoutUserPassword = ordersToday.map((ord, i) => {
-      //   // eslint-disable-next-line no-param-reassign
-      //   ord[i].user.password = undefined;
-      // });
-      res.status(200).json(ordersToday);
+      // send data without the user's password
+      const modified = ordersToday.map((obj) => ({
+        _id: obj._id,
+        createdAt: obj.createdAt,
+        updatedAt: obj.updatedAt,
+        user_address: obj.user_address,
+        lunches: obj.lunches,
+        user: {
+          first_name: obj.user.first_name,
+          last_name: obj.user.last_name,
+          address: obj.user.address,
+          email: obj.user.email,
+          phone: obj.user.phone,
+          email_verified: obj.user.email_verified,
+          createdAt: obj.user.createdAt,
+          updatedAt: obj.user.updatedAt,
+        },
+      }));
+      res.status(200).json(modified);
     } catch (err) {
       res.status(400).json(err);
     }
