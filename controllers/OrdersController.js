@@ -74,7 +74,7 @@ module.exports = {
         // eslint-disable-next-line no-param-reassign
         ord[i].user.password = undefined;
       });
-      res.status(200).json(ordersWithoutUserPassword);
+      res.status(200).json(ordersToday);
     } catch (err) {
       res.status(400).json(err);
     }
