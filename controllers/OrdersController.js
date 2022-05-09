@@ -70,10 +70,10 @@ module.exports = {
       // implement a function to sort the orders and populate users with their data
       // const sortedOrders = sortOrdersToday(ordersToday)
       // eslint-disable-next-line max-len
-      const ordersWithoutUserPassword = ordersToday.map((ord, i) => {
-        // eslint-disable-next-line no-param-reassign
-        ord[i].user.password = undefined;
-      });
+      // const ordersWithoutUserPassword = ordersToday.map((ord, i) => {
+      //   // eslint-disable-next-line no-param-reassign
+      //   ord[i].user.password = undefined;
+      // });
       res.status(200).json(ordersToday);
     } catch (err) {
       res.status(400).json(err);
