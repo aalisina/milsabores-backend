@@ -5,7 +5,7 @@ const express = require('express');
 const { Server } = require('socket.io');
 const http = require('http');
 const { api, PORT } = require('./api');
-const { verifySocketAdmin } = require('./middlewares');
+// const { verifySocketAdmin } = require('./middlewares');
 
 api.use(express.static('public'));
 const server = http.createServer(api);
