@@ -13,7 +13,9 @@ module.exports = {
         $gte: startDate,
         $lt: endDate,
       },
-    });
+    })
+      .populate('user')
+      .exec();
     return ordersToday;
   },
   deleteOne: (id) => Order.findByIdAndDelete(id),
