@@ -14,7 +14,7 @@ module.exports = {
       role: user.role,
       email_verified: user.email_verified,
       address: user.address,
-      exp: '10000d',
+      // exp: '10000d',
     };
     try {
       const token = jwt.sign(payload, process.env.JWT_SECRET);
